@@ -1,4 +1,5 @@
 using HyderabadWalks.API.Data;
+using HyderabadWalks.API.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<HydWalksDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("HydWalksConnectionString")));
+
+builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 
 var app = builder.Build();
  
